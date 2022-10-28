@@ -1,0 +1,49 @@
+{
+    "TableName":"BlogTable",
+    "AttributeDefinitions": [
+    {
+        "AttributeName": "PK",
+        "AttributeType": "S"
+    },
+    {
+        "AttributeName": "SK",
+        "AttributeType": "S"
+    }
+    ],
+    "KeySchema":[
+    {
+        "AttributeName": "PK",
+        "KeyType": "HASH"
+    },
+    {
+        "AttributeName": "SK",
+        "KeyType": "RANGE"
+    }
+    ],
+    "GlobalSecondaryIndexUpdates":[
+        {
+            "IndexName": "InvertedIndex",
+            "KeySchema": [
+                {
+                    "AttributeName": "SK",
+                    "KeyType": "HASH"
+                },
+                {
+                    "AttributeName": "PK",
+                    "KeyType": "RANGE"
+                }
+            ],
+            "Projection": {
+                "ProjectionType": "ALL"
+            },
+            "ProvisionedThroughput": {
+                "ReadCapacityUnits": 10,
+                "WriteCapacityUnits": 10 
+            }
+        }
+    ],
+    "ProvisionedThroughput":{
+    "ReadCapacityUnits": 10,
+    "WriteCapacityUnits": 10 
+}
+}
